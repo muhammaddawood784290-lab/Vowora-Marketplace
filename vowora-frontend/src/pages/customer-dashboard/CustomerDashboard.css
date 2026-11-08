@@ -1,0 +1,163 @@
+.customer-dashboard {
+  max-width: 1000px;
+}
+
+.dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+}
+
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-6);
+}
+
+.stat-icon {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--border-radius-md);
+  flex-shrink: 0;
+}
+
+.stat-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.stat-icon-events {
+  background: var(--color-gray-100);
+  color: var(--color-black);
+}
+
+.stat-icon-active {
+  background: var(--color-gray-100);
+  color: var(--color-black);
+}
+
+.stat-icon-bookings {
+  background: var(--color-gray-100);
+  color: var(--color-black);
+}
+
+.stat-icon-invoices {
+  background: var(--color-gray-100);
+  color: var(--color-black);
+}
+
+.stat-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-value {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin-top: var(--space-1);
+}
+
+.tab-content {
+  margin-top: var(--space-6);
+}
+
+.dashboard-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-5);
+}
+
+.dashboard-section-header h2 {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.event-cell,
+.shortlist-cell,
+.booking-cell,
+.invoice-cell {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.event-name,
+.shortlist-name,
+.booking-name,
+.invoice-number {
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-primary);
+}
+
+.event-date,
+.shortlist-meta,
+.booking-dates,
+.invoice-event {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+.budget-cell,
+.amount-cell {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.plans-cell,
+.vendor-cell,
+.payee-cell {
+  color: var(--color-text-secondary);
+}
+
+.due-cell {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.planner-cell {
+  color: var(--color-text-secondary);
+}
+
+.action-link {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+.action-link:hover {
+  color: var(--color-text-primary);
+}
+
+@media (max-width: 1024px) {
+  .dashboard-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+}

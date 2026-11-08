@@ -1,0 +1,161 @@
+import React from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider, useAuth } from './hooks/useAuth';
+import { LandingPage } from './pages/marketplace/LandingPage';
+import { MarketplaceBrowse } from './pages/marketplace/MarketplaceBrowse';
+import { LoginPage } from './pages/auth/LoginPage';
+import { SignupPage } from './pages/auth/SignupPage';
+import { CustomerDashboard } from './pages/customer-dashboard/CustomerDashboard';
+import { CreateEventBrief } from './pages/customer-dashboard/CreateEventBrief';
+import { EventDetail } from './pages/customer-dashboard/EventDetail';
+import { PlannerSelection } from './pages/customer-dashboard/PlannerSelection';
+import { ShortlistPage } from './pages/customer-dashboard/ShortlistPage';
+import { AccountSettings } from './pages/customer-dashboard/AccountSettings';
+import { CustomerNotifications } from './pages/customer-dashboard/NotificationsPage';
+import { VendorDashboard } from './pages/vendor-dashboard/VendorDashboardShell';
+import { IncomingRequestsPage } from './pages/vendor-dashboard/IncomingRequestsPage';
+import { QuotesPage } from './pages/vendor-dashboard/QuotesPage';
+import { PlannerDashboard } from './pages/planner-dashboard/PlannerDashboardShell';
+import { PlannerEventWorkspace } from './pages/planner-dashboard/PlannerEventWorkspace';
+
+import { AdminShell } from './pages/admin/AdminShell';
+import { AdminDashboard } from './pages/admin/AdminDashboard';
+import { AdminUsers } from './pages/admin/AdminUsers';
+import { AdminVendors } from './pages/admin/AdminVendors';
+import { AdminCategories } from './pages/admin/AdminCategories';
+import { AdminPlans } from './pages/admin/AdminPlans';
+import { AdminVerification } from './pages/admin/AdminVerification';
+import { AdminAudit } from './pages/admin/AdminAudit';
+import { ProfileEditor } from './pages/vendor-planner-dashboard/ProfileEditor';
+import { PortfolioManager } from './pages/vendor-planner-dashboard/PortfolioManager';
+import { ServicesManager } from './pages/vendor-planner-dashboard/ServicesManager';
+import { PackagesManager } from './pages/vendor-planner-dashboard/PackagesManager';
+import { RatesManager } from './pages/vendor-planner-dashboard/RatesManager';
+import { AvailabilityManager } from './pages/vendor-planner-dashboard/AvailabilityManager';
+import { TeamMembersPage } from './pages/vendor-planner-dashboard/TeamMembersPage';
+import { CRMPage } from './pages/vendor-planner-dashboard/CRMPage';
+import { VendorPlannerNotifications } from './pages/vendor-planner-dashboard/NotificationsPage';
+import { VendorPlannerDashboard } from './pages/vendor-planner-dashboard/VendorPlannerDashboard';
+import { AnalyticsPage } from './pages/vendor-planner-dashboard/AnalyticsPage';
+import { BrandingPage } from './pages/vendor-planner-dashboard/BrandingPage';
+import { AutomationPage } from './pages/vendor-planner-dashboard/AutomationPage';
+import './App.css';
+
+function ProtectedRoute({ children, allowedRoles }: { children: React.ReactNode; allowedRoles?: string[] }) {
+  const { isAuthenticated, user } = useAuth();
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
+  if (allowedRoles && user && !allowedRoles.includes(user.role)) {
+    return <Navigate to="/dashboard" replace />;
+  }
+  return <>{children}</>;
+}
+
+function DashboardRouter() {
+  const { user } = useAuth();
+  if (!user) return null;
+
+  switch (user.role) {
+    case 'admin':
+      return (
+        <AdminShell>
+          <AdminDashboard />
+        </AdminShell>
+      );
+    case 'vendor':
+      return (
+        <VendorDashboard>
+          <Routes>
+            <Route path="/dashboard/requests" element={<IncomingRequestsPage />} />
+            <Route path="/dashboard/quotes" element={<QuotesPage />} />
+          </Routes>
+        </VendorDashboard>
+      );
+    case 'planner':
+      return (
+        <PlannerDashboard>
+          <Routes>
+            <Route path="/dashboard/event-workspace/:eventId" element={<PlannerEventWorkspace />} />
+          </Routes>
+        </PlannerDashboard>
+      );
+    case 'customer':
+    default:
+      return null;
+  }
+}
+
+function DashboardRoutes() {
+  const { user } = useAuth();
+  if (!user) return null;
+
+  switch (user.role) {
+    case 'customer':
+      return (
+        <>
+          <Route path="/dashboard" element={<CustomerDashboard />} />
+          <Route path="/dashboard/event-brief" element={<CreateEventBrief />} />
+          <Route path="/dashboard/event/:eventId" element={<EventDetail />} />
+          <Route path="/dashboard/planner-selection" element={<PlannerSelection />} />
+          <Route path="/dashboard/shortlist" element={<ShortlistPage />} />
+          <Route path="/dashboard/settings" element={<AccountSettings />} />
+          <Route path="/dashboard/notifications" element={<CustomerNotifications />} />
+        </>
+      );
+    case 'vendor':
+    case 'planner':
+      return (
+        <>
+          <Route path="/dashboard" element={<VendorPlannerDashboard role={user.role as 'vendor' | 'planner'} userId={user.id} />} />
+          <Route path="/dashboard/profile" element={<ProfileEditor />} />
+          <Route path="/dashboard/portfolio" element={<PortfolioManager />} />
+          <Route path="/dashboard/services" element={<ServicesManager />} />
+          <Route path="/dashboard/packages" element={<PackagesManager />} />
+          <Route path="/dashboard/rates" element={<RatesManager />} />
+          <Route path="/dashboard/availability" element={<AvailabilityManager />} />
+          <Route path="/dashboard/team" element={<TeamMembersPage />} />
+          <Route path="/dashboard/crm" element={<CRMPage />} />
+          <Route path="/dashboard/notifications" element={<VendorPlannerNotifications />} />
+          <Route path="/dashboard/analytics" element={<AnalyticsPage />} />
+          <Route path="/dashboard/branding" element={<BrandingPage />} />
+          <Route path="/dashboard/automation" element={<AutomationPage />} />
+        </>
+      );
+    case 'admin':
+      return <>{/* Admin routes handled by DashboardRouter */}</>;
+    default:
+      return null;
+  }
+}
+
+function AppRoutes() {
+  return (
+    <Routes>
+      {/* Public routes */}
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/marketplace" element={<MarketplaceBrowse />} />
+      <Route path="/marketplace/category/:slug" element={<MarketplaceBrowse />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/signup" element={<SignupPage />} />
+
+      {/* Customer dashboard */}
+      <Route path="/dashboard" element={<ProtectedRoute allowedRoles={['customer', 'vendor', 'planner', 'admin']}><><DashboardRoutes /><DashboardRouter /></></ProtectedRoute>} />
+
+      {/* Fallback */}
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <AuthProvider>
+        <AppRoutes />
+      </AuthProvider>
+    </BrowserRouter>
+  );
+}
+
+export default App;

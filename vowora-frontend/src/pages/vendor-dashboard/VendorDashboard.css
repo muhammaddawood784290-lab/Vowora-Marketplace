@@ -1,0 +1,41 @@
+.vendor-dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  background: var(--color-gray-50);
+}
+
+.vendor-dashboard-main {
+  margin-left: var(--sidebar-width);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.vendor-dashboard-content {
+  flex: 1;
+  padding: var(--space-8);
+  max-width: 1400px;
+  width: 100%;
+}
+
+.sidebar-mobile-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+}
+
+@media (max-width: 768px) {
+  .vendor-dashboard-main {
+    margin-left: 0;
+  }
+
+  .vendor-dashboard-content {
+    padding: var(--space-4);
+  }
+
+  .sidebar-mobile-overlay {
+    display: block;
+  }
+}

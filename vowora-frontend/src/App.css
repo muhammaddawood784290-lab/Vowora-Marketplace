@@ -1,0 +1,16 @@
+/* App-level styles - mostly empty, all styles are in index.css and component CSS */
+
+#root {
+  min-height: 100vh;
+}
+
+/* Remove default Vite styles */
+.hero,
+.counter,
+.ticks,
+#next-steps,
+#docs,
+#social,
+#spacer {
+  display: none;
+}
