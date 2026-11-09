@@ -1443,7 +1443,7 @@
   flex-direction: column;
 }
 
-.admin-plan-card :global(.package-popular) {
+.admin-plan-card .package-popular {
   border-color: var(--color-black);
 }
 
