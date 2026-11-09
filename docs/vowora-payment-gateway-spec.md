@@ -1,5 +1,21 @@
-# Vowora Payment Gateway Specification
+# Vowora Payment Gateway Spec
 
-Payment gateway integration is a later module. The gateway adapter must support idempotency, webhooks, payment intent status, refunds, dispute states, reconciliation, and secure tokenization.
+## Status
 
-The backend must never store raw card data. Provider webhooks are verified, replay-safe, and mapped to internal payment records.
+- Payment gateway integration is a later module.
+- It is part of a separate, approved expansion scope.
+
+## Requirements
+
+- Idempotency.
+- Webhook verification.
+- Payment intent status.
+- Refunds.
+- Dispute states.
+- Reconciliation.
+- Secure tokenization.
+
+## Constraints
+
+- The backend must never store raw card data.
+- Provider webhooks are verified, replay-safe, and mapped to internal payment records.

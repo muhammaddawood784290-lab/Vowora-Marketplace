@@ -1,5 +1,13 @@
-# Vowora Vendor and Planner Agreement Draft
+# Vowora Vendor and Planner Agreement
 
-The provider agrees to maintain accurate profile information, service descriptions, pricing, availability, portfolio rights, response commitments, invoices, cancellation terms, and legal compliance.
+## Scope
 
-The provider grants Vowora permission to display approved business content for marketplace operation. The provider remains responsible for customer delivery and direct payment arrangements. Final agreement requires legal review.
+- Vendors and planners agree to maintain accurate profiles, service descriptions, pricing, availability, portfolio rights, response commitments, invoices, cancellation terms, and legal compliance.
+- Providers grant Vowora permission to display approved business content for marketplace operation.
+- Providers remain responsible for customer delivery and direct payment arrangements.
+- Final agreement requires legal review.
+
+## Status
+
+- **Partially implemented** — policy summary exists.
+- **Planned** — full legal agreement.

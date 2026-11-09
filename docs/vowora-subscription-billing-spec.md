@@ -1,5 +1,20 @@
-# Vowora Subscription Billing Specification
+# Vowora Subscription Billing Spec
 
-Vendor and Planner subscriptions use configurable Silver, Gold, and Diamond plans. Entitlements are checked server-side on every restricted action.
+## Plans
 
-Lifecycle: trial or pending → active → past due → grace period → suspended → cancelled. Plan changes preserve audit history and define immediate or next-cycle entitlement changes.
+- Silver, Gold, Diamond.
+- Entitlements are stored in PostgreSQL and checked server-side.
+
+## Lifecycle
+
+- Trial or pending → active → past due → grace period → suspended → cancelled.
+
+## Plan changes
+
+- Preserve audit history.
+- Define immediate or next-cycle entitlement changes.
+
+## Status
+
+- **Partially implemented** — plan configuration exists.
+- **Planned** — billing processing and gateway integration.

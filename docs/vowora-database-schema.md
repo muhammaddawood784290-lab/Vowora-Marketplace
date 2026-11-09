@@ -12,3 +12,8 @@ PostgreSQL is the source of truth. All monetary values use integer minor units p
 - Submitted quotes and approved proposals are immutable; corrections create versions.
 - Files are stored outside PostgreSQL; only metadata and storage paths are stored here.
 - Use foreign keys, unique constraints, soft deletion where auditability requires it, and indexes for owner, status, event, and created time.
+
+## Status
+
+- **Implemented** — schema document exists.
+- **Planned** — physical schema creation.

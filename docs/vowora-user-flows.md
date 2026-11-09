@@ -11,3 +11,7 @@ Create profile → add services, packages, rates, portfolio, and availability �
 ## Planner
 
 Create profile → receive assignment → review event → manage shortlist → coordinate vendors → compare quotes → create proposal → customer approval → booking and event tracking.
+
+## Admin
+
+Login → dashboard → manage users, categories, verification, subscriptions, assignments, disputes, audit review → configure plans, limits, and features → support actions.

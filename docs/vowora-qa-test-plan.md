@@ -9,3 +9,8 @@ Test customer, vendor, planner, and admin journeys on desktop and mobile layouts
 - Plan limits, entitlements, team members, branding, and n8n template access.
 - File validation, private signed URLs, audit logging, notifications, retries, and webhook idempotency.
 - Accessibility, performance, responsive behavior, backup restore, and security regression tests.
+
+## Status
+
+- **Partially implemented** — Playwright manual tests exist.
+- **Planned** — automated unit, integration, and E2E coverage.
